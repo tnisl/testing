@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: venv/bin/python prepare.py
+    deps:
+    - path: data/big_data.csv
+      hash: md5
+      md5: 5110ef26e62f7a8127aeff13a128bbf3
+      size: 18
+    - path: prepare.py
+      hash: md5
+      md5: a31d11210ea4107ff407e0525a1b56f7
+      size: 488
+    outs:
+    - path: data/processed/X.csv
+      hash: md5
+      md5: ba848127572da2744ad8da979980ed50
+      size: 8
+    - path: data/processed/y.csv
+      hash: md5
+      md5: f57977cc569f22bf6dd68b442715ba93
+      size: 10
+  train:
+    cmd: venv/bin/python train.py
+    deps:
+    - path: data/processed/X.csv
+      hash: md5
+      md5: ba848127572da2744ad8da979980ed50
+      size: 8
+    - path: data/processed/y.csv
+      hash: md5
+      md5: f57977cc569f22bf6dd68b442715ba93
+      size: 10
+    - path: train.py
+      hash: md5
+      md5: 22779ee71a578108a5a7b7ea7d4e1a21
+      size: 439
+    outs:
+    - path: model.pkl
+      hash: md5
+      md5: e21f4de178c3e98bc25ba2adae289148
+      size: 847
