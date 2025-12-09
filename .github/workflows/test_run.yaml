@@ -1,0 +1,40 @@
+name: Simple-Test-Run
+on: [push]
+
+
+jobs:
+  test-my-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - uses: actions/setup-cml@v1
+
+      - name: Install libs
+        run: pip install -r requirements.txt
+
+
+      - name: Gen Data
+        run: python gen_data.py
+      
+      - name: Run pipelines
+        run: dvc repro
+      
+      - name: Report
+        env: 
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        run: |
+          echo "--REPORT--" > report.md
+
+          echo "METRICS: " >> report.md
+          cat metric.txt >> report.md
+
+          echo "PLOT: " >> report.md
+          
+          cml-publish residual.png --md >> report.md
+
+          cml comment create report.md
