@@ -1,6 +1,6 @@
 stages:
   prepare:
-    cmd: venv/bin/python prepare.py
+    cmd: python prepare.py
     deps:
       - data/big_data.csv
       - prepare.py
