@@ -10,7 +10,7 @@ stages:
 
 
   train:
-    cmd: venv/bin/python train.py
+    cmd: python train.py
     deps:
       - data/processed/X.csv
       - data/processed/y.csv
