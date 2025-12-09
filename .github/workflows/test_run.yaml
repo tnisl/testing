@@ -1,6 +1,11 @@
 name: Simple-Test-Run
 on: [push]
 
+permissions:
+  contents: write       
+  pull-requests: write  
+  issues: write         
+  id-token: write       
 
 jobs:
   test-my-code:
