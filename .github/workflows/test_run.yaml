@@ -35,6 +35,6 @@ jobs:
 
           echo "PLOT: " >> report.md
           
-          cml-publish residual.png --md >> report.md
+          cml publish residual.png --md >> report.md
 
           cml comment create report.md
