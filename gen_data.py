@@ -46,7 +46,7 @@ def gen_anomaly():
 
 
 
-gen_anomaly()
+gen_norm()
 
     
 
